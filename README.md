@@ -28,7 +28,7 @@ $ cd catkin_ws/src/
 $ catkin_create_pkg networking rospy roscpp std_msgs OpenCV cv_bridge image_transport
 ```
 
-Now  the publisher and subscriber file to your networking directory just created in catkin_ws/src
+Now copy the publisher and subscriber file to your networking directory just created in catkin_ws/src
 ```
 $ cd
 $ cd {Your directory}/drone_networking/src
@@ -55,16 +55,16 @@ $ catkin_make
 $ source devel/setup.bash
 ```
 
-#### Now repeat the exact same process of using the repo on Raspberry Pi
+#### Repeat the exact same process of using the repo on Raspberry Pi
 
 Now you are ready for the networking part
 ### Through Ethernet cable
 
-Connect the Raspberry Pi to your System and do exxecute the following on terminal
+Connect the Raspberry Pi to your System and do execute the following on terminal
 ```
 sudo arp-scan --interface=eth0 --localnet
 ```
-You will get a IP Address similar to 10.42.XX.XX
+You will get a IP Address similar to 10.42.XX.XX  
 Copy the IP Address and use it to ssh into the RaspBerry Pi
 
 ```
@@ -83,7 +83,7 @@ export ROS_MASTER_URI=http://10.42.XX.XX(IP of Raspberry Pi):11311
 export ROS_IP=10.42.XX.XX(IP of RaspBerry Pi)
 roscore
 ```
-In the another terminal on RaspBerry Pi
+In another terminal on RaspBerry Pi
 ```
 export ROS_MASTER_URI=http://10.42.XX.XX(IP of Raspberry Pi):11311
 export ROS_IP=10.42.XX.XX(IP of RaspBerry Pi)
@@ -92,17 +92,21 @@ rosrun networking Publisher
 
 Now you need to setup your system to subscribe the messages
 
-Open a terminal on your system
+Open a terminal on your system and do
 ```
 ifconfig
 ```
 Note the IP Address of your system of the format 10.42.YY.YY
 
-In the same terminal write
+In the same terminal execute
 ```
 export ROS_MASTER_URI=http://10.42.XX.XX(IP of Raspberry Pi):11311
 export ROS_IP=10.42.YY.YY(IP of your system)
 rosrun networking Subscriber
 ```
+If everything goes well, a window will pop up showing the video from the camera of RaspBerry Pi
+
+The second case can also be done just by reversing the operations of roscore on the machines.
+
 
 

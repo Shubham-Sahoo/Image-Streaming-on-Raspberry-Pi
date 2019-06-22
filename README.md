@@ -5,9 +5,9 @@ Images were transferred and streamed in video using ROS(Robot Operating System) 
 ## Steps to get networking done in your system
 
 ### Dependencies
-1. Install ROS Kinetic ![Link](http://wiki.ros.org/kinetic/Installation/Ubuntu)
-2. Install ROS on Raspbian ![Link](http://wiki.ros.org/ROSberryPi/Setting%20up%20ROS%20on%20RaspberryPi)
-3. Install OpenCV on your system as well as on RaspBerry Pi ![Link](https://www.learnopencv.com/install-opencv3-on-ubuntu/)
+1. Install ROS Kinetic [Link](http://wiki.ros.org/kinetic/Installation/Ubuntu)
+2. Install ROS on Raspbian [Link](http://wiki.ros.org/ROSberryPi/Setting%20up%20ROS%20on%20RaspberryPi)
+3. Install OpenCV on your system as well as on RaspBerry Pi [Link](https://www.learnopencv.com/install-opencv3-on-ubuntu/)
 4. Install cv_bridge
 
 ### Now you are ready to use this repo

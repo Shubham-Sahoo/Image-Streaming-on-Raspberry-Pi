@@ -17,7 +17,7 @@ Images were transferred and streamed in video using ROS(Robot Operating System) 
 Clone the repo to your desired directory on your system
 ```
 $ cd {Your directory}
-$ git clone https://github.com/Shubham-Sahoo/drone_networking.git
+$ git clone https://github.com/Shubham-Sahoo/Networking.git
 ```
 Make a catkin workspace, if you already don't have it
 ```
@@ -31,7 +31,7 @@ $ catkin_create_pkg networking rospy roscpp std_msgs OpenCV cv_bridge image_tran
 Now copy the publisher and subscriber file to your networking directory just created in catkin_ws/src
 ```
 $ cd
-$ cd {Your directory}/drone_networking/src
+$ cd {Your directory}/Networking/src
 $ cp Publisher.cpp Subscriber.cpp /home/{user}/catkin_ws/src/networking/src/
 ```
 

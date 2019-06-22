@@ -9,6 +9,8 @@ Images were transferred and streamed in video using ROS(Robot Operating System) 
 2. Install ROS on Raspbian [Link](http://wiki.ros.org/ROSberryPi/Setting%20up%20ROS%20on%20RaspberryPi)
 3. Install OpenCV on your system as well as on RaspBerry Pi [Link](https://www.learnopencv.com/install-opencv3-on-ubuntu/)
 4. Install cv_bridge
+5. Install arp-scan on your system
+6. Install openssh-server on your system as well as on RaspBerry Pi and enable ssh on both the systems
 
 ### Now you are ready to use this repo
 
@@ -23,7 +25,7 @@ $ mkdir -p ~/catkin_ws/src
 $ cd catkin_ws/
 $ catkin_make
 $ cd catkin_ws/src/
-$ catkin_create_pkg networking rospy roscpp std_msgs OpenCV cv_bridge
+$ catkin_create_pkg networking rospy roscpp std_msgs OpenCV cv_bridge image_transport
 ```
 
 Now  the publisher and subscriber file to your networking directory just created in catkin_ws/src
@@ -43,6 +45,8 @@ target_link_libraries(Publisher ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
 add_executable(Subscriber src/Subscriber.cpp)
 target_link_libraries(Subscriber ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
 ```
+You can check the CMakeLists.txt for reference
+
 
 Now make the package
 ```
@@ -54,15 +58,51 @@ $ source devel/setup.bash
 #### Now repeat the exact same process of using the repo on Raspberry Pi
 
 Now you are ready for the networking part
+### Through Ethernet cable
 
-
-
-
-
-## To fit plane in the 3D plot
-
-```python 
-ranplanefit.py
+Connect the Raspberry Pi to your System and do exxecute the following on terminal
 ```
-![Ransac Plane Fitted](https://github.com/Shubham-Sahoo/SLAM/blob/master/Plane_fit.png)
+sudo arp-scan --interface=eth0 --localnet
+```
+You will get a IP Address similar to 10.42.XX.XX
+Copy the IP Address and use it to ssh into the RaspBerry Pi
+
+```
+sudo ssh pi@10.42.XX.XX
+```
+
+Now we have two choices:
+1. Run roscore on RaspBerry Pi
+2. Run roscore on OffBoard System
+
+Let's take the first case where roscore is running on RaspBerry Pi
+
+Open a terminal on RaspBerry Pi and do the following
+```
+export ROS_MASTER_URI=http://10.42.XX.XX(IP of Raspberry Pi):11311
+export ROS_IP=10.42.XX.XX(IP of RaspBerry Pi)
+roscore
+```
+In the another terminal on RaspBerry Pi
+```
+export ROS_MASTER_URI=http://10.42.XX.XX(IP of Raspberry Pi):11311
+export ROS_IP=10.42.XX.XX(IP of RaspBerry Pi)
+rosrun networking Publisher
+```
+
+Now you need to setup your system to subscribe the messages
+
+Open a terminal on your system
+```
+ifconfig
+```
+Note the IP Address of your system of the format 10.42.YY.YY
+
+In the same terminal write
+```
+export ROS_MASTER_URI=http://10.42.XX.XX(IP of Raspberry Pi):11311
+export ROS_IP=10.42.YY.YY(IP of your system)
+rosrun networking Subscriber
+```
+
 

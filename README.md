@@ -13,12 +13,12 @@ Images were transferred and streamed in video using ROS(Robot Operating System) 
 ### Now you are ready to use this repo
 
 Clone the repo to your desired directory
-```python
+```
 $ cd {Your directory}
 $ git clone https://github.com/Shubham-Sahoo/drone_networking.git
 ```
 Make a catkin workspace, if you already don't have it
-```python
+```
 $ mkdir -p ~/catkin_ws/src
 $ cd catkin_ws/
 $ catkin_make
@@ -28,10 +28,6 @@ $ catkin_create_pkg networking rospy roscpp std_msgs OpenCV cv_bridge
 
 
 
-```python
-python imc.py
-```
-![3D Constructed Castor Wheel](https://github.com/Shubham-Sahoo/SLAM/blob/master/3Dplot_castor_wheel.png)
 
 
 ## To fit plane in the 3D plot
